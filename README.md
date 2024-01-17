@@ -20,3 +20,8 @@
 - [x] 최근 3일간 뉴스 => [csv](result_from_20240115_end_20240117.csv)
 - [x] 실습 과제로 작성한 노트북(ipynb) 파일 => [main.ipynb](main.ipynb)
 - [x] 웹 구현 결과 이미지 => ![](res.jpeg)
+
+1. 실행 방법
+```bash
+$ ./run_server.sh
+```
