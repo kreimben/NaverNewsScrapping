@@ -17,6 +17,6 @@
 - 웹 구현 진행이 어려울 경우 입출력을 위한 function 작성하여 Notebook을 통한 입출력 실행
 
 1. 결과물
--[x] 최근 3일간 뉴스 => [csv](result_from_20240115_end_20240117.csv)
--[x] 실습 과제로 작성한 노트북(ipynb) 파일 => [main.ipynb](main.ipynb)
--[x] 웹 구현 결과 이미지 => ![](res.jpeg)
+- [x] 최근 3일간 뉴스 => [csv](result_from_20240115_end_20240117.csv)
+- [x] 실습 과제로 작성한 노트북(ipynb) 파일 => [main.ipynb](main.ipynb)
+- [x] 웹 구현 결과 이미지 => ![](res.jpeg)
