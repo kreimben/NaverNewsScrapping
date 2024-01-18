@@ -12,7 +12,7 @@ from .model import News
 
 def __converter(news: List[News]) -> List[NewsDto]:
     return [NewsDto(id=n.id, press=n.press, title=n.title, link=n.link, category=n.category, date=n.date,
-                    document=n.document) for n in news]
+                    document=n.document, summary=n.summary) for n in news]
 
 
 def __convert_to_datetime(date_str) -> date:
