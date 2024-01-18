@@ -14,3 +14,4 @@ class News(Base):
     title = Column(String)
     document = Column(String)
     link = Column(String)
+    summary = Column(String)

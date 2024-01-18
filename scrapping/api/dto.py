@@ -12,6 +12,7 @@ class NewsDto(BaseModel):
     title: Optional[str]
     document: Optional[str]  # Maybe content of news.
     link: Optional[str]
+    summary: Optional[str]
 
     class Config:
         from_attributes = True
