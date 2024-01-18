@@ -19,7 +19,7 @@ start_date = start_date.strftime("%Y%m%d")
 
 query = '데이터분석'
 url = f"https://search.naver.com/search.naver?where=news&query={query}&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=3&ds={start_date}&de={end_date}&docid=&nso=so:r,p:from{start_date}to{end_date},a:all&mynews=0&refresh_start=0&related=0"
-max_page = 50  # 크롤링을 원하는 최대 페이지 수 지정
+max_page = 5  # 크롤링을 원하는 최대 페이지 수 지정
 
 # 각 기사들의 데이터를 종류별로 나눠담을 리스트를 생성합니다. (추후 DataFrame으로 모을 예정)
 titles = []
@@ -28,6 +28,8 @@ articles = []
 article_urls = []
 press_companies = []
 categories = []
+summaries_map = {}
+summaries = []
 category_kind = {
     '정치': 100, '경제': 101, '사회': 102, '생활/문화': 103, "세계": 104, "IT/과학": 105, '연예': 106, '스포츠': 107
 }
@@ -57,6 +59,7 @@ while current_call <= last_call:
     urls_list = []
     for urls in source.find_all('a', {'class': "info"}):
         if urls["href"].startswith("https://n.news.naver.com"):
+            summaries_map[urls["href"]] = source.find('a', {'class': 'api_txt_lines dsc_txt_wrap'}).get_text()
             urls_list.append(urls["href"])
 
     for url in urls_list:
@@ -94,6 +97,7 @@ while current_call <= last_call:
             articles.append(article)
             press_companies.append(press_company)
             article_urls.append(url)
+            summaries.append(summaries_map.get(url, ''))
 
             for k, v in category_kind.items():
                 find = f'sid={v}'
@@ -132,9 +136,10 @@ article_df = pd.DataFrame({
     'document': articles,
     'link': article_urls,
     'press': press_companies,
-    'category': categories
+    'category': categories,
+    'summary': summaries
 })
 
-# article_df.to_csv(f'result_from_{start_date}_end_{end_date}.csv', index=False, encoding='utf-8')
+article_df.to_csv(f'result_from_{start_date}_end_{end_date}.csv', index=False, encoding='utf-8')
 
 article_df.sort_values(by='date', ascending=True)
