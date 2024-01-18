@@ -27,7 +27,7 @@ def __convert_to_datetime(date_str) -> date:
 
 def swap_db(db: Session) -> List[NewsDto]:
     # load data from csv
-    df = pd.read_csv('./result_from_20240115_end_20240117.csv')
+    df = pd.read_csv('./result_from_20240116_end_20240118.csv')
     # df to pydantic
     news = [News(**row) for index, row in df.iterrows()]
     for n in news:
